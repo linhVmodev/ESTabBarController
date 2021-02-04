@@ -75,6 +75,12 @@ open class ESTabBarItemContentView: UIView {
         }
     }
     
+    open var titleFont: UIFont? {
+        didSet {
+            self.updateLayout()
+        }
+    }
+    
     /// Text color when highlighted, default is `UIColor(red: 0.0, green: 0.47843137, blue: 1.0, alpha: 1.0)`.
     open var highlightTextColor = UIColor(red: 0.0, green: 0.47843137, blue: 1.0, alpha: 1.0) {
         didSet {
@@ -250,7 +256,7 @@ open class ESTabBarItemContentView: UIView {
             }
             
             if !imageView.isHidden && !titleLabel.isHidden {
-                titleLabel.font = UIFont.systemFont(ofSize: f)
+                titleLabel.font = titleFont ?? UIFont.systemFont(ofSize: f)
                 titleLabel.sizeToFit()
                 if #available(iOS 11.0, *), isWide {
                     titleLabel.frame = CGRect.init(x: (w - titleLabel.bounds.size.width) / 2.0 + (UIScreen.main.scale == 3.0 ? 14.25 : 12.25) + titlePositionAdjustment.horizontal,
@@ -277,7 +283,7 @@ open class ESTabBarItemContentView: UIView {
                                               width: s,
                                               height: s)
             } else if !titleLabel.isHidden {
-                titleLabel.font = UIFont.systemFont(ofSize: f)
+                titleLabel.font = titleFont ?? UIFont.systemFont(ofSize: f)
                 titleLabel.sizeToFit()
                 titleLabel.frame = CGRect.init(x: (w - titleLabel.bounds.size.width) / 2.0 + titlePositionAdjustment.horizontal,
                                                y: (h - titleLabel.bounds.size.height) / 2.0 + titlePositionAdjustment.vertical,
