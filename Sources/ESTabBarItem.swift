@@ -66,7 +66,7 @@ open class ESTabBarItem: UITabBarItem {
     
     open var titleFont: UIFont? {
         didSet {
-            self.contentView?.titleFont = titleFont
+            self.contentView.titleFont = titleFont
         }
     }
     
